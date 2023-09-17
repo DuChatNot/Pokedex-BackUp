@@ -18,7 +18,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "Claudio Pantoja",
+      "package": "com.duchatnot.Pokedex",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -26,6 +26,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "84cfcc90-1237-4fc7-a06d-43b0fe9bec67"
+      }
     }
   }
 }
