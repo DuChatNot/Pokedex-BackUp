@@ -5,7 +5,10 @@ import { FAV_STORAGE } from "../utils/constants";
 export async function getFavoritePokemon () {
     try{
         const response = await AsyncStorage.getItem(FAV_STORAGE);
-        return JSON.parse(response || []);
+        if(response){ 
+            const res = JSON.parse(response)
+            return res;
+        } else {return [];}
     } catch(e) {throw e;}
 }
 
@@ -13,10 +16,8 @@ export async function addFavoritePokemon (id) {
     try{
         const favorites = await getFavoritePokemon();
         favorites.push(id);
-
         await AsyncStorage.setItem(FAV_STORAGE, JSON.stringify(favorites))
-
-    } catch (e){throw e;}
+    } catch (e){throw new Error(e.message);}
 }
 
 export async function isPokemonFav(id){

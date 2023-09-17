@@ -4,7 +4,7 @@ import { View, StyleSheet, TouchableOpacity} from 'react-native'
 import { addFavoritePokemon, isPokemonFav, removeFavorite } from '../../api/addFavFunction'
 
 export default function Favorite({id, name}) {
-    const [reloadCheck, setReloadCheck] = useState(false);
+    const [reload, setReload] = useState(false);
     const [isFavorite, setIsFavorite] = useState(undefined);
     console.log(isFavorite)
 
@@ -15,22 +15,25 @@ export default function Favorite({id, name}) {
                 setIsFavorite(response);
             } catch(e){setIsFavorite(false)}
         })()
-    }, [id, reloadCheck]);
+    }, [id, reload]);
 
-    const onCheckReload = () => {
-        setReloadCheck(!reloadCheck)
+    const onReload = () => {
+        setReload(!reload)
     }
 
     const removeFromFavs = async () => {
         try{
             await removeFavorite(id)
-            onCheckReload();
+            onReload();
         } catch(e){console.log (e);}
     }
 
     const favoriteSelected = async () => {
-        await addFavoritePokemon(id);
-        onCheckReload();
+        try{
+            await addFavoritePokemon(id);
+            onReload();
+        } catch (e) {console.log(e)}
+        
     }
     return (
         <View style={sty.favContainer}>
@@ -55,7 +58,7 @@ const sty = StyleSheet.create({
         width: 75,
         height: 75,
         position: 'absolute',
-        //backgroundColor: 'green'
+        backgroundColor: 'green', opacity: 0.5
     },
     icon:{
         pointerEvents: 'none',

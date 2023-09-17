@@ -24,6 +24,7 @@ export default function Pokemon({navigation, route:{params}}) { //route = propie
   }, [params, navigation])
 
     if(!pData) return null;
+    
   return (
     <ScrollView>
       <Header name={pData.name} order={pData.id} 
