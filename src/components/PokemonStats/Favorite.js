@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome5'
-import { View, StyleSheet, TouchableOpacity} from 'react-native'
+import { View, StyleSheet, TouchableOpacity, Button} from 'react-native'
 import { addFavoritePokemon, isPokemonFav, removeFavorite } from '../../api/addFavFunction'
 
 export default function Favorite({id, name}) {
@@ -37,10 +37,8 @@ export default function Favorite({id, name}) {
     }
     return (
         <View style={sty.favContainer}>
-            <Icon name='heart' color={'#C03028'} solid={isFavorite} size={25} style={sty.icon}/>
-            <TouchableOpacity 
-            onPress={isFavorite ? removeFromFavs : favoriteSelected} 
-            style={sty.hitbox}/>
+            <Button title='Go' onPress={isFavorite ? removeFromFavs : favoriteSelected} color={isFavorite ? "#C03028" : '#f0f0f0'}/>
+            <Icon name='heart' color={'#C03028'} solid={isFavorite} size={30} style={sty.icon}/>
         </View>
         )
 };
@@ -54,16 +52,10 @@ const sty = StyleSheet.create({
         right: 5,
         top: 500,
     },
-    hitbox:{
-        width: 75,
-        height: 75,
-        position: 'absolute',
-        backgroundColor: 'green', opacity: 0.5
-    },
     icon:{
         pointerEvents: 'none',
         position: 'absolute',
-        right: 25,
-        top: 25
+        right: 20,
+        top: 10
     }
 })

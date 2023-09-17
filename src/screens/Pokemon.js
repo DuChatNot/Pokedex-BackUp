@@ -1,7 +1,6 @@
 import { ScrollView, Text } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import { pokemonDetails } from '../api/dataFetch';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import useAuth from '../Hooks/UseAuth';
 
 import Favorite from '../components/PokemonStats/Favorite';
@@ -32,12 +31,6 @@ export default function Pokemon({navigation, route:{params}}) { //route = propie
       type={pData.types[0].type.name}/>
 
       {auth && <Favorite id={pData.id} name={pData.name}/>}
-
-      <Icon name='arrow-left' color="#fff" size={20}
-      style={{marginLeft: 20,
-      position: 'absolute',
-      top: 55,
-      left: 12}} onPress={() => navigation.goBack}/>
 
       <Type type={pData.types}/>
       <Stats stats={pData.stats}/>
